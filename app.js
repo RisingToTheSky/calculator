@@ -2,30 +2,17 @@ let number1;
 let number2;
 let operator;
 
-function add(a, b){
-    return a+b;
-}
+const button = document.querySelectorAll("button");
 
-function subtract(a, b){
-    return a-b;
-}
-
-function multiply(a, b){
-    return a*b;
-}
-
-function divide(a, b){
-    return a/b;
-}
 
 function operate(a, b, operator){
-    if (operator === "+") return add(a,b);
-    if (operator === "-") return subtract(a,b);
-    if (operator === "*") return multiply(a,b);
-    if (operator === "/") return divide(a,b);
+    if (operator === "+") return a+b;
+    if (operator === "-") return a-b;
+    if (operator === "*") return a*b;
+    if (operator === "/") return a/b;
 }
 
-console.log(operate(1, 5, "+"));
-console.log(operate(1, 5, "-"));
-console.log(operate(1, 5, "*"));
-console.log(operate(1, 5, "/"));
+button.addEventListener("click", () => {
+    
+})
+
