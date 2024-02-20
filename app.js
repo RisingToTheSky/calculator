@@ -1,11 +1,9 @@
-let displayValue = '0';
+let displayValue = '';
 let number1 = "";
 let number2 = "";
 let operator = "";
 
 const buttons = document.querySelectorAll("button");
-const button = document.querySelector("button");
-const number = document.getElementsByClassName(".number");
 
 
 function operate(a, b, operator){
@@ -18,11 +16,18 @@ function operate(a, b, operator){
 // Populate display
 function populateDisplay(){
     const display = document.querySelector('.display');
-    // Set text content to value of button
-    display.innerTextContent = displayValue;
-    if (displayValue.length > 9){
-        display.innerTextContent = displayValue.substring(0, 9);
-    }
+    display.innerText = displayValue;
 }
 
-populateDisplay();
+// When button with class of number is clicked, it should display
+function clickingButton(){
+    buttons.forEach(button => button.addEventListener("click", () =>{
+        // Checks if the length of display exceeds 9
+        if (displayValue.length < 9){
+            displayValue += button.innerText;
+            populateDisplay();
+        }
+    }));
+}
+
+clickingButton();
