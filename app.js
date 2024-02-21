@@ -10,7 +10,13 @@ function operate(a, b, operator){
     if (operator === "+") return a+b;
     if (operator === "-") return a-b;
     if (operator === "*") return a*b;
-    if (operator === "/") return a/b;
+    if (operator === "/"){
+        if (b !== 0){
+            return a/b;
+        }else{
+            return "MATH ERROR";
+        }
+    }
 }
 
 // Populate display
@@ -35,8 +41,11 @@ function clickingButton(){
                 }
             } 
         }else if (button.classList.contains("operator")){
-            displayValue += button.innerText;
             operator = button.innerText;
+            if (num1 !== ""){
+                displayValue = "";
+                populateDisplay();
+            }
         }else if (button.innerText === "="){
             if (num1 !== "" && num2 !== "" && operator !== ""){
                 let result = operate(parseFloat(num1), parseFloat(num2), operator);
