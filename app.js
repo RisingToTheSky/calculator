@@ -49,12 +49,23 @@ function clickingButton(){
         }else if (button.innerText === "="){
             if (num1 !== "" && num2 !== "" && operator !== ""){
                 let result = operate(parseFloat(num1), parseFloat(num2), operator);
-                displayValue = result.toString();
+                // Round results when it exceeds 7 decimals
+                if (result.toString().length > 9){
+                    displayValue = result.toFixed(7);
+                }else{
+                    displayValue = result.toString();
+                }
                 populateDisplay();
                 num1 = result.toString();
                 num2 = "";
                 operator = "";
             }
+        }else if (button.innerText !== "="){
+            // Evaluate only one pairs
+
+            // Always store result after 2 numbers
+
+            // When equals sign is clicked, change result
         }
         // Add clear button 
         if (button.classList.contains("clear")){
