@@ -18,7 +18,6 @@ function populateDisplay(){
     const display = document.querySelector('.display');
     display.innerText = displayValue;
 }
-
 // When button with class of number is clicked, it should display
 function clickingButton(){
     buttons.forEach(button => button.addEventListener("click", () =>{
@@ -48,7 +47,13 @@ function clickingButton(){
                 operator = "";
             }
         }
+        // Add clear button 
+        if (button.classList.contains("clear")){
+            displayValue = "";
+            populateDisplay();
+        }
     }));
 }
+
 
 clickingButton();
