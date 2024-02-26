@@ -3,6 +3,7 @@ let num1 = "";
 let num2 = "";
 let operator = "";
 let result;
+let operatorClicked = false;
 
 const buttons = document.querySelectorAll("button");
 
@@ -19,8 +20,16 @@ function operate(a, b, operator){
         }
     }
 }
-
-// Populate display
+function evaluate(){
+    if (num1 !== "" && num2 !== "" && operator !== "") {
+        result = operate(parseFloat(num1), parseFloat(num2), operator);
+        displayValue = result.toString();
+        populateDisplay();
+        num1 = result.toString();
+        num2 = "";
+        operator = "";
+    }
+}
 function populateDisplay(){
     const display = document.querySelector('.display');
     display.innerText = displayValue;
@@ -42,20 +51,21 @@ function clickingButton(){
                 }
             } 
         }else if (button.classList.contains("operator")){
+            if (num1 !== "" && operator !== ""){
+                evaluate();
+            }
             operator = button.innerText;
+            operatorClicked = true;
             if (num1 !== ""){
                 displayValue = "";
                 populateDisplay();
             }
         }else if (num1 !== "" && num2 !== "" && operator !== ""){
-                result = operate(parseFloat(num1), parseFloat(num2), operator);
-                displayValue = result.toString();
-                populateDisplay();
-                num1 = result.toString();
-                num2 = "";
-                operator = "";
-            }
-        // Add clear button 
+            evaluate();
+        }else if (button.classList.contains("equals")){
+            evaluate();
+            operatorClicked = false;
+        }
         if (button.classList.contains("clear")){
             displayValue = "";
             populateDisplay();
@@ -63,8 +73,6 @@ function clickingButton(){
             num2 = "";
             operator = "";
         }
-
-        // Add backspace button
         if (button.classList.contains("clearEntry")){
             displayValue = displayValue.substring(0, displayValue.length - 1);
             populateDisplay();
