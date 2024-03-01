@@ -30,6 +30,7 @@ function evaluate(){
         populateDisplay();
     }
 }
+
 function populateDisplay(){
     const display = document.querySelector('.display');
     if (displayValue.length > 9){
@@ -65,31 +66,20 @@ buttons.forEach(button => button.addEventListener("click", () =>{
         operatorClicked = true;
         if (num1 !== ""){
             displayValue = "";
-            populateDisplay();
         }
     }else if ((num1 !== "" && num2 !== "" && operator !== "")){
         evaluate();
     }else if (button.classList.contains("equals")){
         evaluate();
         operatorClicked = false;
-    }
-    if (button.classList.contains("clear")){
+    }else if (button.classList.contains("clear")){
         displayValue = "";
         populateDisplay();
         num1 = "";
         num2 = "";
         operator = "";
-    }
-    if (button.classList.contains("clearEntry")){
+    }else if (button.classList.contains("clearEntry")){
         displayValue = displayValue.substring(0, displayValue.length - 1);
         populateDisplay();
-    }
-    if (button.classList.contains("decimal")){
-        if (button.innerText === "."){
-            if (!displayValue.includes(".") && displayValue !== ""){
-                displayValue += ".";
-                populateDisplay();
-            }
-        }
     }
 }));
